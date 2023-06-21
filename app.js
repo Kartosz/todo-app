@@ -1,6 +1,9 @@
 /* elements and global variables */
 const addTodoBtn = document.getElementById('add-todo-btn');
 const todosNav = document.getElementById('sidebar');
+const audio1 = new Audio('audio/sound1.mp3');
+const audio2 = new Audio('audio/sound2.mp3');
+const audio3 = new Audio('audio/sound3.mp3');
 let todoListArray = [];
 let todosFilter = 'all';
 let filteredTodos = [];
@@ -82,6 +85,7 @@ const renderTodos = () => {
     todoDeleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
     todoDeleteBtn.addEventListener('click', () => {
       todoListArray.splice(index, 1);
+      audio2.play();
       saveTodos();
       renderTodos();
     });
@@ -104,9 +108,11 @@ const renderTodos = () => {
       if (todo.completed) {
         currentIcon.classList.remove('fa-regular', 'fa-circle');
         currentIcon.classList.add('fa-regular', 'fa-check-circle');
+        audio1.play()
       } else {
         currentIcon.classList.remove('fa-regular', 'fa-check-circle');
         currentIcon.classList.add('fa-regular', 'fa-circle');
+        audio3.play()
       }
     });
     
@@ -122,6 +128,7 @@ const renderTodos = () => {
     todosList.appendChild(todoItem);
   });
 };
+
 
 
 /* utility functions */
@@ -150,6 +157,7 @@ const isOverdue = (date) => {
 /* initialization */
 todoListArray = getTodos();
 renderTodos();
+
 
 const sidebar = document.querySelector('.sidebar')
 const sidebarToggleBtn = document.querySelector('.sidebar-toggle')
