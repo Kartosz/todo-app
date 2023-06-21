@@ -40,6 +40,9 @@ body {
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .app-big { 
@@ -312,7 +315,7 @@ body {
 
 #todos-list li {
   display: flex;
-  padding: 25px 15px 25px;
+  padding: 15px 15px 15px;
   margin: 10px 0 10px;
   border-radius: 8px;
   transition: all 300ms ease-in-out;
@@ -362,9 +365,7 @@ body {
   color: red; /* Red color for overdue dates */
 }
 
-#todos-list li.completed {
-  opacity: 0.6;
-}
+
 
 .todo-btn{
   cursor: pointer;
