@@ -325,7 +325,8 @@ body {
 }
 
 #todos-list li button {
-  padding: 8px 8px 8px 0;
+  padding: 2px;
+  border: none;
   border-radius: 50%;
   font-size: 1.25rem;
   color: #999; /* Gray button color */
@@ -365,10 +366,13 @@ body {
   opacity: 0.6;
 }
 
-#todos-list li.completed .todo-btn {
-  color: green; /* Green color for completed tasks */
+.todo-btn{
+  cursor: pointer;
 }
 
+.todo-btn i.fa-circle-check{
+  color: green;
+}
 
 @media screen and (min-width: 670px) {
   #add-todo-form {

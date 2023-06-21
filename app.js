@@ -69,13 +69,13 @@ const renderTodos = () => {
     const todoText = document.createElement('span');
     const todoDate = document.createElement('span');
     const todoDeleteBtn = document.createElement('button');
-    const todoCheckbox = document.createElement('input');
+    const todoCheckbox = document.createElement('button');
 
     todoItem.classList.add('todo-item');
     todoText.classList.add('todo-text');
     todoDate.classList.add('todo-date');
     todoDeleteBtn.classList.add('delete-btn');
-    todoCheckbox.classList.add('checkbox');
+    todoCheckbox.classList.add('todo-btn');
 
     todoText.textContent = todo.text;
     todoDate.textContent = formatDate(todo.date);
@@ -86,13 +86,30 @@ const renderTodos = () => {
       renderTodos();
     });
 
-    todoCheckbox.type = 'checkbox';
+    todoCheckbox.type = 'button';
+    if (todo.completed) {
+      const completedIcon = document.createElement('i');
+      completedIcon.classList.add('fa-regular', 'fa-circle-check');
+      todoCheckbox.appendChild(completedIcon);
+    } else {
+      todoCheckbox.innerHTML = '<i class="fa-regular fa-circle"></i>';
+    }
     todoCheckbox.checked = todo.completed;
-    todoCheckbox.addEventListener('change', () => {
-      todo.completed = todoCheckbox.checked;
+    todoCheckbox.addEventListener('click', () => {
+      todo.completed = !todo.completed;
       saveTodos();
       renderTodos();
+    
+      const currentIcon = todoCheckbox.querySelector('i');
+      if (todo.completed) {
+        currentIcon.classList.remove('fa-regular', 'fa-circle');
+        currentIcon.classList.add('fa-regular', 'fa-check-circle');
+      } else {
+        currentIcon.classList.remove('fa-regular', 'fa-check-circle');
+        currentIcon.classList.add('fa-regular', 'fa-circle');
+      }
     });
+    
 
     if (isOverdue(new Date(todo.date))) {
       todoDate.classList.add('overdue');
